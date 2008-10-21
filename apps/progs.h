@@ -22,7 +22,9 @@ extern int ecparam_main(int argc,char *argv[]);
 extern int x509_main(int argc,char *argv[]);
 extern int genrsa_main(int argc,char *argv[]);
 extern int gendsa_main(int argc,char *argv[]);
+#if 0 /* ANDROID */
 extern int s_server_main(int argc,char *argv[]);
+#endif
 extern int s_client_main(int argc,char *argv[]);
 extern int speed_main(int argc,char *argv[]);
 extern int s_time_main(int argc,char *argv[]);
@@ -97,7 +99,9 @@ FUNCTION functions[] = {
 	{FUNC_TYPE_GENERAL,"gendsa",gendsa_main},
 #endif
 #if !defined(OPENSSL_NO_SOCK) && !(defined(OPENSSL_NO_SSL2) && defined(OPENSSL_NO_SSL3))
-	{FUNC_TYPE_GENERAL,"s_server",s_server_main},
+#if 0 /* ANDROID */
+        {FUNC_TYPE_GENERAL,"s_server",s_server_main},
+#endif
 #endif
 #if !defined(OPENSSL_NO_SOCK) && !(defined(OPENSSL_NO_SSL2) && defined(OPENSSL_NO_SSL3))
 	{FUNC_TYPE_GENERAL,"s_client",s_client_main},
