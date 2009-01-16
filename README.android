@@ -1,3 +1,13 @@
+Version Information
+---
+
+The code in this directory is based on 0.9.8h with patches from
+http://openssl.org/news/secadv_20090107.txt.
+
+
+Porting New Versions of OpenSSL
+---
+
 The following steps are recommended for porting new OpenSSL versions.
 
 
