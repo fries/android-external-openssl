@@ -457,7 +457,6 @@ LOCAL_SRC_FILES+= \
 	dsa/dsa_ossl.c \
 	dsa/dsa_sign.c \
 	dsa/dsa_vrf.c \
-	dsa/dsagen.c \
 	ripemd/rmd_dgst.c \
 	ripemd/rmd_one.c \
 	evp/m_ripemd.c \
