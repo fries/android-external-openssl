@@ -290,8 +290,6 @@ LOCAL_SRC_FILES+= \
 	krb5/krb5_asn.c \
 	lhash/lhash.c \
 	lhash/lh_stats.c \
-	md2/md2_dgst.c \
-	md2/md2_one.c \
 	md4/md4_dgst.c \
 	md4/md4_one.c \
 	md5/md5_dgst.c \

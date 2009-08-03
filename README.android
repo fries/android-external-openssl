@@ -2,7 +2,8 @@ Version Information
 ---
 
 The code in this directory is based on 0.9.8h with patches from
-http://openssl.org/news/secadv_20090107.txt.
+http://openssl.org/news/secadv_20090107.txt, and some backported OpenSSL code
+in crypto/0.9.9-dev.
 
 
 Porting New Versions of OpenSSL
@@ -11,7 +12,8 @@ Porting New Versions of OpenSSL
 The following steps are recommended for porting new OpenSSL versions.
 
 
-a) Run "./Configure linux-generic32 no-idea no-bf no-cast no-seed -DL_ENDIAN"
+a) Run "./Configure linux-generic32 no-idea no-bf no-cast no-seed no-md2      \
+       -DL_ENDIAN"
    in the openssl distribution directory.
 
    (Ignore when the Configure scripts asks you to run "make depend".)
@@ -35,8 +37,8 @@ d) You may delete the following directories along with their contents,
    since we won't use these (any more):
 
      MacOS Netware VMS apps/demoCA apps/set bugs certs crypto/bf crypto/cast  \
-     crypto/cms crypto/idea crypto/rc5 crypto/seed demos doc engines ms os2   \
-     perl shlib test times tools util
+     crypto/cms crypto/idea crypto/md2 crypto/rc5 crypto/seed demos doc \
+     engines ms os2 perl shlib test times tools util
 
    Also you may delete the following files:
 
