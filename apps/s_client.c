@@ -315,10 +315,8 @@ int MAIN(int argc, char **argv)
 	BIO *sbio;
 	char *inrand=NULL;
 	int mbuf_len=0;
-#ifndef OPENSSL_NO_ENGINE
 	char *engine_id=NULL;
 	ENGINE *e=NULL;
-#endif
 #if defined(OPENSSL_SYS_WINDOWS) || defined(OPENSSL_SYS_MSDOS) || defined(OPENSSL_SYS_NETWARE)
 	struct timeval tv;
 #endif
