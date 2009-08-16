@@ -198,25 +198,6 @@ LOCAL_SRC_FILES+= \
 	dso/dso_openssl.c \
 	dso/dso_win32.c \
 	dso/dso_vms.c \
-	ec/ec_lib.c \
-	ec/ecp_smpl.c \
-	ec/ecp_mont.c \
-	ec/ecp_nist.c \
-	ec/ec_cvt.c \
-	ec/ec_mult.c \
-	ec/ec_err.c \
-	ec/ec_asn1.c \
-	ec/ec_curve.c \
-	ec/ec_key.c \
-	ec/ec_print.c \
-	ec/ec2_smpl.c \
-	ec/ec2_mult.c \
-	ecdsa/ecs_lib.c \
-	ecdsa/ecs_ossl.c \
-	ecdsa/ecs_err.c \
-	ecdsa/ecs_vrf.c \
-	ecdsa/ecs_sign.c \
-	ecdsa/ecs_asn1.c \
 	err/err.c \
 	err/err_all.c \
 	err/err_prn.c \
@@ -264,7 +245,6 @@ LOCAL_SRC_FILES+= \
 	evp/p5_crpt.c \
 	evp/p5_crpt2.c \
 	evp/e_old.c \
-	evp/m_ecdsa.c \
 	hmac/hmac.c \
 	krb5/krb5_asn.c \
 	lhash/lhash.c \
@@ -436,11 +416,7 @@ LOCAL_SRC_FILES+= \
 	dsa/dsa_vrf.c \
 	ripemd/rmd_dgst.c \
 	ripemd/rmd_one.c \
-	evp/m_ripemd.c \
-	ecdh/ech_err.c \
-	ecdh/ech_key.c \
-	ecdh/ech_lib.c \
-	ecdh/ech_ossl.c
+	evp/m_ripemd.c
 
 LOCAL_CFLAGS += -DNO_WINDOWS_BRAINDEATH 
 
