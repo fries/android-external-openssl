@@ -406,7 +406,8 @@ LOCAL_SRC_FILES+= \
 	dsa/dsa_vrf.c \
 	ripemd/rmd_dgst.c \
 	ripemd/rmd_one.c \
-	evp/m_ripemd.c
+	evp/m_ripemd.c \
+	evp/e_bf.c bf/bf_skey.c bf/bf_ecb.c bf/bf_enc.c bf/bf_cfb64.c bf/bf_ofb64.c
 
 LOCAL_CFLAGS += -DNO_WINDOWS_BRAINDEATH 
 
