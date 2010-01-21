@@ -1,18 +1,17 @@
 LOCAL_PATH:= $(call my-dir)
-include $(CLEAR_VARS)
 
 ifeq ($(TARGET_ARCH),arm)
-	LOCAL_CFLAGS += -DOPENSSL_BN_ASM_MONT -DAES_ASM -DSHA1_ASM -DSHA256_ASM -DSHA512_ASM
-	LOCAL_SRC_FILES:= 0.9.9-dev/bn/armv4-mont.s \
+	common_CFLAGS += -DOPENSSL_BN_ASM_MONT -DAES_ASM -DSHA1_ASM -DSHA256_ASM -DSHA512_ASM
+	common_SRC_FILES:= 0.9.9-dev/bn/armv4-mont.s \
 	                  0.9.9-dev/aes/aes-armv4.s \
 	                  0.9.9-dev/sha/sha1-armv4-large.s \
 	                  0.9.9-dev/sha/sha256-armv4.s \
 	                  0.9.9-dev/sha/sha512-armv4.s
 else
-	LOCAL_SRC_FILES:= aes/aes_core.c
+	common_SRC_FILES:= aes/aes_core.c
 endif
 
-LOCAL_SRC_FILES+= \
+common_SRC_FILES+= \
 	cryptlib.c \
 	mem.c \
 	mem_clr.c \
@@ -430,22 +429,39 @@ LOCAL_SRC_FILES+= \
 	evp/m_ripemd.c \
 	evp/e_bf.c bf/bf_skey.c bf/bf_ecb.c bf/bf_enc.c bf/bf_cfb64.c bf/bf_ofb64.c
 
-LOCAL_CFLAGS += -DNO_WINDOWS_BRAINDEATH 
+common_CFLAGS += -DNO_WINDOWS_BRAINDEATH 
 
-include $(LOCAL_PATH)/../android-config.mk
-
-LOCAL_C_INCLUDES += \
+common_C_INCLUDES += \
 	external/openssl \
 	external/openssl/include \
 
-# LOCAL_SHARED_LIBRARIES += libengines
+# common_SHARED_LIBRARIES += libengines
 
 ifneq ($(TARGET_SIMULATOR),true)
-	LOCAL_SHARED_LIBRARIES += libdl
+	common_SHARED_LIBRARIES += libdl
 endif
 
-LOCAL_LDLIBS += -ldl
 
+# static library
+# =====================================================
+
+include $(CLEAR_VARS)
+LOCAL_CFLAGS:= $(common_CFLAGS)
+LOCAL_SRC_FILES:= $(common_SRC_FILES)
+include $(LOCAL_PATH)/../android-config.mk
+LOCAL_C_INCLUDES:= $(common_C_INCLUDES)
+LOCAL_SHARED_LIBRARIES += $(common_SHARED_LIBRARIES)
+LOCAL_MODULE:= libcrypto-static
+include $(BUILD_STATIC_LIBRARY)
+
+# dynamic library
+# =====================================================
+
+include $(CLEAR_VARS)
+LOCAL_CFLAGS:= $(common_CFLAGS)
+LOCAL_SRC_FILES:= $(common_SRC_FILES)
+include $(LOCAL_PATH)/../android-config.mk
+LOCAL_C_INCLUDES:= $(common_C_INCLUDES)
+LOCAL_SHARED_LIBRARIES += $(common_SHARED_LIBRARIES)
 LOCAL_MODULE:= libcrypto
-
 include $(BUILD_SHARED_LIBRARY)

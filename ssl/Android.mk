@@ -1,7 +1,6 @@
 LOCAL_PATH:= $(call my-dir)
-include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES:= \
+common_SRC_FILES:= \
 	s2_meth.c \
 	s2_srvr.c \
 	s2_clnt.c \
@@ -39,16 +38,31 @@ LOCAL_SRC_FILES:= \
 	ssl_err.c \
 	kssl.c
 
-include $(LOCAL_PATH)/../android-config.mk
-
-
-LOCAL_C_INCLUDES += \
+common_C_INCLUDES += \
 	external/openssl \
 	external/openssl/include \
 	external/openssl/crypto
 
+# static library
+# =====================================================
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES:= $(common_SRC_FILES)
+include $(LOCAL_PATH)/../android-config.mk
+LOCAL_C_INCLUDES:= $(common_C_INCLUDES)
+#LOCAL_PRELINK_MODULE:= false
+#LOCAL_STATIC_LIBRARIES += libcrypto-static
+LOCAL_MODULE:= libssl-static
+include $(BUILD_STATIC_LIBRARY)
+
+# dynamic library
+# =====================================================
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES:= $(common_SRC_FILES)
+include $(LOCAL_PATH)/../android-config.mk
+LOCAL_C_INCLUDES:= $(common_C_INCLUDES)
+#LOCAL_PRELINK_MODULE:= false
 LOCAL_SHARED_LIBRARIES += libcrypto
-
 LOCAL_MODULE:= libssl
-
 include $(BUILD_SHARED_LIBRARY)
