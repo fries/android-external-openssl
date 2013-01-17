@@ -19,8 +19,8 @@ LOCAL_SHARED_LIBRARIES := \
 	libcrypto 
 
 LOCAL_C_INCLUDES := \
-	external/openssl \
-	external/openssl/include
+	$(LOCAL_PATH)/.. \
+	$(LOCAL_PATH)/../include
 
 LOCAL_CFLAGS := -DMONOLITH
 

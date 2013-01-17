@@ -432,8 +432,8 @@ common_SRC_FILES+= \
 common_CFLAGS += -DNO_WINDOWS_BRAINDEATH 
 
 common_C_INCLUDES += \
-	external/openssl \
-	external/openssl/include \
+	$(LOCAL_PATH)/.. \
+	$(LOCAL_PATH)/../include \
 
 # common_SHARED_LIBRARIES += libengines
 
@@ -454,14 +454,14 @@ LOCAL_SHARED_LIBRARIES += $(common_SHARED_LIBRARIES)
 LOCAL_MODULE:= libcrypto-static
 include $(BUILD_STATIC_LIBRARY)
 
-# dynamic library
-# =====================================================
-
-include $(CLEAR_VARS)
-LOCAL_CFLAGS:= $(common_CFLAGS)
-LOCAL_SRC_FILES:= $(common_SRC_FILES)
-include $(LOCAL_PATH)/../android-config.mk
-LOCAL_C_INCLUDES:= $(common_C_INCLUDES)
-LOCAL_SHARED_LIBRARIES += $(common_SHARED_LIBRARIES)
-LOCAL_MODULE:= libcrypto
-include $(BUILD_SHARED_LIBRARY)
+## dynamic library
+## =====================================================
+#
+#include $(CLEAR_VARS)
+#LOCAL_CFLAGS:= $(common_CFLAGS)
+#LOCAL_SRC_FILES:= $(common_SRC_FILES)
+#include $(LOCAL_PATH)/../android-config.mk
+#LOCAL_C_INCLUDES:= $(common_C_INCLUDES)
+#LOCAL_SHARED_LIBRARIES += $(common_SHARED_LIBRARIES)
+#LOCAL_MODULE:= libcrypto
+#include $(BUILD_SHARED_LIBRARY)
